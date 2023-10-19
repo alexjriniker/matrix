@@ -115,10 +115,7 @@ impl Add<&Matrix> for &Matrix {
             Some(Matrix::from_iter(
                 self.n_rows,
                 self.n_cols,
-                self.data
-                    .iter()
-                    .enumerate()
-                    .map(|(i, v)| v + rhs.data[i]),
+                self.data.iter().enumerate().map(|(i, v)| v + rhs.data[i]),
             ))
         } else {
             None
@@ -134,10 +131,7 @@ impl Sub<&Matrix> for &Matrix {
             Some(Matrix::from_iter(
                 self.n_rows,
                 self.n_cols,
-                self.data
-                    .iter()
-                    .enumerate()
-                    .map(|(i, v)| v - rhs.data[i]),
+                self.data.iter().enumerate().map(|(i, v)| v - rhs.data[i]),
             ))
         } else {
             None
@@ -153,10 +147,7 @@ impl Mul<&Matrix> for &Matrix {
             Some(Matrix::from_iter(
                 self.n_rows,
                 self.n_cols,
-                self.data
-                    .iter()
-                    .enumerate()
-                    .map(|(i, v)| v * rhs.data[i]),
+                self.data.iter().enumerate().map(|(i, v)| v * rhs.data[i]),
             ))
         } else {
             None
@@ -172,10 +163,7 @@ impl Div<&Matrix> for &Matrix {
             Some(Matrix::from_iter(
                 self.n_rows,
                 self.n_cols,
-                self.data
-                    .iter()
-                    .enumerate()
-                    .map(|(i, v)| v / rhs.data[i]),
+                self.data.iter().enumerate().map(|(i, v)| v / rhs.data[i]),
             ))
         } else {
             None

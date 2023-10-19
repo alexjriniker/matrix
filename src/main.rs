@@ -43,7 +43,7 @@ fn main() {
 
     let mut a: Vec<Vec<f64>> = vec![vec![0.0; 2]; 2];
     let mut b: Vec<f64> = vec![0.0; 2];
-    
+
     for i in 1..3 {
         a[i - 1][0] = anchors[i].x - anchors[0].x;
         a[i - 1][1] = anchors[i].y - anchors[0].y;
@@ -52,7 +52,6 @@ fn main() {
     }
 
     let mut det = a[0][0] * a[1][1] - a[1][0] * a[0][1];
-
 
     det = 1.0 / det;
 
@@ -70,11 +69,8 @@ fn main() {
     println!("RESULT: {}, {}", x, y);
     println!("DELTA: {}", (&Point::new(x, y) - &tag).pow(2).sum().sqrt());
 
-
-
     println!("Matrix A: {:?}", a);
     println!("DET: {}", det);
-    
 
     // let inaccuracy = 0.05;
     // let (lower_range, upper_range) = (100.0, 300.0);
