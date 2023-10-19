@@ -66,7 +66,7 @@ fn main() {
     let y = 0.5 * (a_inv[1][0] * b[0] + a_inv[1][1] * b[1]);
 
     println!("TAG: {}", tag);
-    println!("RESULT: {}, {}", x, y);
+    println!("RESULT: ({}, {})", x, y);
     println!("DELTA: {}", (&Point::new(x, y) - &tag).pow(2).sum().sqrt());
 
     println!("Matrix A: {:?}", a);
