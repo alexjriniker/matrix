@@ -78,7 +78,6 @@ impl Contains<Circle> for Rectangle {
         let delta_y = Point::new(0.0, obj.radius);
 
         [
-            &obj.pt,
             &(&obj.pt + &delta_x),
             &(&obj.pt - &delta_x),
             &(&obj.pt + &delta_x),
