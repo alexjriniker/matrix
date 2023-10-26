@@ -213,7 +213,7 @@ fn main() {
 
     let mut runner = TestRunner::new(num_of_anchors, error_margin, bounds.clone(), callback);
 
-    let times = 1_000_000;
+    let times = 10_000_000;
     let result: Vec<test_runner::TestResult> = runner.run(times);
 
     let deltas = result.iter().map(|v| v.delta);
