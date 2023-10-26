@@ -1,4 +1,8 @@
-use crate::point::Point;
+use crate::{
+    point::Point,
+    rectangle::Rectangle,
+    two_dim_shape::{Contains, TwoDimShape},
+};
 use std::{f64::consts::PI, fmt::Display};
 
 #[derive(PartialEq, Debug, Clone)]
@@ -40,22 +44,26 @@ impl Circle {
         self.radius *= factor;
     }
 
-    pub fn area(&self) -> f64 {
-        self.radius.powi(2) * PI
-    }
+    // // pub fn area(&self) -> f64 {
+    // //     self.radius.powi(2) * PI
+    // // }
 
-    pub fn circumference(&self) -> f64 {
-        2.0 * self.radius * PI
-    }
+    // // pub fn circumference(&self) -> f64 {
+    // //     2.0 * self.radius * PI
+    // // }
 
-    pub fn contains_pt(&self, pt: Point) -> bool {
-        self.pt.distance_to(&pt) <= self.radius
-    }
+    // pub fn contains_pt(&self, pt: Point) -> bool {
+    //     self.pt.distance_to(&pt) <= self.radius
+    // }
 
-    pub fn contains_circle(&self, circle: Circle) -> bool {
-        let dist = self.pt.distance_to(&circle.pt);
+    // pub fn contains_circle(&self, circle: Circle) -> bool {
+    //     let dist = self.pt.distance_to(&circle.pt);
 
-        self.radius + dist < circle.radius
+    //     self.radius + dist < circle.radius
+    // }
+
+    pub fn calc_diameter(&self) -> f64 {
+        self.radius * 2.0
     }
 
     // TODO: fix circle intersection method!!!!!!!!!
@@ -176,6 +184,50 @@ impl Circle {
     //         Intersection((pt_a, &pt - &delta))
     //     }
     // }
+}
+
+impl TwoDimShape for Circle {
+    fn calc_area(&self) -> f64 {
+        self.radius.powi(2) * PI
+    }
+
+    fn calc_perimeter(&self) -> f64 {
+        self.calc_diameter() * PI
+    }
+
+    fn calc_center_pt(&self) -> Point {
+        self.pt.to_owned()
+    }
+
+    fn calc_min_span(&self) -> f64 {
+        self.calc_diameter()
+    }
+
+    fn calc_max_span(&self) -> f64 {
+        self.calc_diameter()
+    }
+}
+
+impl Contains<Point> for Circle {
+    fn contains(&self, obj: &Point) -> bool {
+        self.pt.distance_to(obj) < self.radius
+    }
+}
+
+impl Contains<Rectangle> for Circle {
+    fn contains(&self, obj: &Rectangle) -> bool {
+        obj.get_corners().iter().all(|pt| self.contains(pt))
+    }
+}
+
+impl Contains for Circle {
+    fn contains(&self, obj: &Circle) -> bool {
+        self.contains(&obj.pt) && {
+            let dist = self.pt.distance_to(&obj.pt);
+
+            dist < self.radius + obj.radius && dist > (self.radius - obj.radius).abs()
+        }
+    }
 }
 
 impl Display for Circle {
