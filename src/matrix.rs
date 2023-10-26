@@ -36,6 +36,10 @@ impl Matrix {
         self.n_rows == mat.n_rows && self.n_cols == mat.n_cols
     }
 
+    pub fn is_square(&self) -> bool {
+        self.n_rows == self.n_cols
+    }
+
     pub fn get(&self, row: usize, col: usize) -> Option<&f64> {
         if row < self.n_rows && col < self.n_cols {
             Some(&self.data[col + row * self.n_cols])
