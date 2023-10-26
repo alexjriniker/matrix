@@ -17,6 +17,14 @@ impl Matrix {
     }
 
     pub fn from_iter(n_rows: usize, n_cols: usize, data: impl IntoIterator<Item = f64>) -> Self {
+        let data: Vec<f64> = data.into_iter().take(n_cols * n_rows).collect();
+
+        assert_eq!(
+            data.len(),
+            n_rows * n_cols,
+            "Matrix data size does not match n_rows * n_cols"
+        );
+
         Matrix {
             data: data.into_iter().take(n_cols * n_rows).collect(),
             n_cols,
