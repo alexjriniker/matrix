@@ -30,6 +30,15 @@ impl Rectangle {
     pub fn y_range(&self) -> RangeInclusive<f64> {
         self.pt.y..=(self.pt.y + self.height)
     }
+
+    pub fn get_corners(&self) -> [Point; 4] {
+        [
+            self.pt.to_owned(),
+            (&self.pt + &Point::new(self.width, 0.0)),
+            (&self.pt + &Point::new(0.0, self.height)),
+            (&self.pt + &Point::new(self.width, self.height)),
+        ]
+    }
 }
 
 impl TwoDimShape for Rectangle {
