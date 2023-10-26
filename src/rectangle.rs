@@ -41,7 +41,7 @@ impl TwoDimShape for Rectangle {
         2.0 * (self.width + self.height)
     }
 
-    fn get_center_pt(&self) -> Point {
+    fn calc_center_pt(&self) -> Point {
         &self.pt + &(&Point::new(self.width, self.height) / 2.0)
     }
 

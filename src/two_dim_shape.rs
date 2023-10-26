@@ -13,7 +13,7 @@ pub trait TwoDimShape: Contains<Point> + Contains<Rectangle> + Contains<Circle> 
     fn calc_perimeter(&self) -> f64;
 
     /// Returns shapes center point
-    fn get_center_pt(&self) -> Point;
+    fn calc_center_pt(&self) -> Point;
 
     /// Returns the length of the smallest line that can be drawn inside the object
     fn calc_min_span(&self) -> f64;
