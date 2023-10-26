@@ -26,7 +26,7 @@ impl Matrix {
         );
 
         Matrix {
-            data: data.into_iter().take(n_cols * n_rows).collect(),
+            data,
             n_cols,
             n_rows,
         }
